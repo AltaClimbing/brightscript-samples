@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shuffled Playlist with Autoplay</title>
+</head>
+<body>
+    <!-- YouTube Player -->
+    <div id="player"></div>
+
+    <script>
+        // Load the YouTube iFrame Player API asynchronously
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // Function to create YouTube player after API is loaded
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                playerVars: {
+                    'listType': 'playlist',
+                    'list': 'PLdei0zxQ7zVw2qCEKaGZUqWF3qW06qzyN',
+                    'shuffle': 1,   // Enable shuffle
+                    'autoplay': 1   // Enable autoplay
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        // Function to start video playback when player is ready
+        function onPlayerReady(event) {
+            event.target.playVideo(); // Start playing the first video
+        }
+    </script>
+</body>
+</html>
